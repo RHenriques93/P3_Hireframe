@@ -1,0 +1,33 @@
+{
+  "name": "hireframe",
+  "version": "1.0.0",
+  "description": "Projeto - Unidade Curricular - Programação III - Instituto Superior Miguel Torga - 2020",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js"
+  },
+  "keywords": [
+    "Hireframe",
+    "Programação",
+    "P3"
+  ],
+  "author": "Rafael Henriques, André Ferreira",
+  "license": "MIT",
+  "dependencies": {
+    "app": "^0.1.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "create": "0.0.2",
+    "create-react-app": "^3.4.1",
+    "express": "^4.17.1",
+    "frontend": "^2.0.0-alpha.4",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "mustache": "^4.0.1",
+    "mysql2": "^2.1.0",
+    "react": "^16.13.1",
+    "save": "^2.4.0",
+    "sequelize": "^5.21.7"
+  }
+}
