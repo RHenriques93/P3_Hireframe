@@ -49,8 +49,8 @@ controller.utilizador_detail = async (req, res) => {
 //utilizador_create
 controller.utilizador_create = async (req, res) => {
     const { username, nome, email, data_nascimento, pass, id_tipo, genero}  = req.body;
-    console.log(req.file.path);
     const { imagem } = req.file.path;
+  
     const dados = await utilizador.create({
         username: username,
         nome: nome,

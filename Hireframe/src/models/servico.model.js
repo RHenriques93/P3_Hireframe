@@ -4,7 +4,7 @@ const db = require('../config/database');
 const subarea = require('../models/subarea.model');
 const area = require('../models/area.model');
 const utilizador = require('../models/utilizador.model');
-
+const preco = require('../models/preco.model');
 
 var servico = db.define('servico',  {
     id_servico: {type: sequelize.INTEGER, primaryKey: true,
@@ -20,25 +20,6 @@ timestamps: false,
 tableName: 'servico'
 
 });
-
-var preco= db.define('preco_servicos',  {
-    id_preco_servico: {type: sequelize.INTEGER, primaryKey: true,
-         autoIncrement: true
-        },
-    base: sequelize.INTEGER,
-    padrao: sequelize.INTEGER,   
-    premium: sequelize.INTEGER,
-    id_servico: {
-        type: sequelize.INTEGER,
-        reference: {model: servico, key: "id_servico"}
-    }
-},
-{
-timestamps: false, 
-tableName: 'preco_servico'
-
-});
-
 
 
 var img_serv = db.define('img_services',  {
@@ -80,3 +61,5 @@ servico.belongsTo(utilizador,  {foreignKey: 'id_utilizador'
  
 
 module.exports = servico;
+
+
