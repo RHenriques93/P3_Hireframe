@@ -142,4 +142,33 @@ controller.utilizador_requisicao_detail = async (req, res) => {
         };
 
 
+//requisicao_img_update
+controller.requisicao_img_update = async (req, res) => {
+
+  const {id} = req.params;
+  const dados = await requisicao.update({
+      
+  
+      img_req: JSON.stringify(req.file.path),
+    
+  }, {
+      where: { id_requisicao: id }
+  })
+  .then(function(dados){
+      console.log(dados);
+      return dados;
+  })
+  .catch((error) => {
+      res.status(500).send({
+        message: error.message || "Ocorreu um erro ao tentar atualizar a imagem da requisição.",
+      });
+  });
+  res.json({
+      success: true,
+      dados: dados,
+    });
+  };
+
+
+
 module.exports = controller;

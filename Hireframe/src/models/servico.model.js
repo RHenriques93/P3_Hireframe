@@ -14,6 +14,7 @@ var servico = db.define('servico',  {
     id_subarea: sequelize.INTEGER,   
     data: sequelize.DATE,
     descricao: sequelize.STRING,
+    img_serv: sequelize.STRING,
 },
 {
 timestamps: false, 

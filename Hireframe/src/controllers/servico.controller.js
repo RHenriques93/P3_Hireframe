@@ -219,5 +219,34 @@ controller.preco_create = async (req, res) => {
     };
 
 
+//servico_img_update
+controller.servico_img_update = async (req, res) => {
+
+  const {id} = req.params;
+  const dados = await servico.update({
+      
+  
+      img_serv: JSON.stringify(req.file.path),
+    
+  }, {
+      where: { id_servico: id }
+  })
+  .then(function(dados){
+      console.log(dados);
+      return dados;
+  })
+  .catch((error) => {
+      res.status(500).send({
+        message: error.message || "Ocorreu um erro ao tentar atualizar a imagem do serviço.",
+      });
+  });
+  res.json({
+      success: true,
+      dados: dados,
+    });
+  };
+
+
+
 
 module.exports = controller;

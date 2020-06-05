@@ -47,10 +47,11 @@ controller.utilizador_detail = async (req, res) => {
 
 
 //utilizador_create
-controller.utilizador_create = async (req, res) => {
+controller.utilizador_create = async (req, res, next) => {
     const { username, nome, email, data_nascimento, pass, id_tipo, genero}  = req.body;
-    const { imagem } = req.file.path;
-  
+    //const { imagem } = JSON.stringify(req.file.path);
+    //console.log(" =>" + JSON.stringify(req.file.path));
+    
     const dados = await utilizador.create({
         username: username,
         nome: nome,
@@ -58,7 +59,7 @@ controller.utilizador_create = async (req, res) => {
         data_nascimento: data_nascimento,
         pass: pass,
         id_tipo: id_tipo,
-        imagem: imagem,
+        //imagem: JSON.stringify(req.file.path),
         genero: genero,
         
     })
@@ -206,6 +207,35 @@ controller.utilizador_login = async (req, res) => {
     
          };
       
+
+
+//utilizador_img_update
+controller.utilizador_img_update = async (req, res) => {
+
+  const {id} = req.params;
+  const dados = await utilizador.update({
+      
+  
+      imagem: JSON.stringify(req.file.path),
+    
+  }, {
+      where: { id_utilizador: id }, include: ["tipo_utilizador"]
+  })
+  .then(function(dados){
+      console.log(dados);
+      return dados;
+  })
+  .catch((error) => {
+      res.status(500).send({
+        message: error.message || "Ocorreu um erro ao tentar atualizar a imagem do utilizador.",
+      });
+  });
+  res.json({
+      success: true,
+      dados: dados,
+    });
+  };
+
 
 
 module.exports = controller;

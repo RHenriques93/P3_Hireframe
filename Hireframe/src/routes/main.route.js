@@ -35,8 +35,8 @@ const upload = multer({
     storage: storage, 
     limits: {
     fileSize: 1024 * 1024 * 5  
-},
-fileFilter: fileFilter
+}//,
+//fileFilter: fileFilter
 });
 
 const withAuth = require('../middleware');
@@ -46,13 +46,15 @@ const withAuth = require('../middleware');
 //utilizadores
 router.get('/utilizadores',utilizadorController.utilizador_list);
 router.get('/utilizador/:id', utilizadorController.utilizador_detail);
-router.post('/utilizador', upload.single('imagem'), utilizadorController.utilizador_create);
+router.post('/utilizador', /*upload.single('imagem'),*/ utilizadorController.utilizador_create);
 router.put('/utilizador/:id', utilizadorController.utilizador_update);
 router.delete('/utilizador/:id', utilizadorController.utilizador_delete);
 router.get('/genero_utilizador/:genero', utilizadorController.genero_utilizador_detail);
 router.get('/tipo_utilizador/:id', utilizadorController.tipo_utilizador_detail);
 
 router.post('/login', utilizadorController.utilizador_login);
+
+router.put('/img_utilizador/:id', upload.single('imagem'), utilizadorController.utilizador_img_update);
 
 
 // ---------------------------------------------
@@ -70,6 +72,9 @@ router.get('/subarea_servico/:id', servicoController.subarea_servico_detail);
 router.put('/preco_servico/:id', servicoController.preco_update);
 router.post('/preco_servico', servicoController.preco_create);
 
+
+router.put('/img_servico/:id', upload.single('imagem'), servicoController.servico_img_update);
+
 // ---------------------------------------------
 
 //requisicoes
@@ -80,6 +85,8 @@ router.put('/requisicao/:id', requisicaoController.requisicao_update);
 router.delete('/requisicao/:id', requisicaoController.requisicao_delete);
 //
 router.get('/utilizador_requisicao/:id', requisicaoController.utilizador_requisicao_detail);
+
+router.put('/img_requisicao/:id', upload.single('imagem'), requisicaoController.requisicao_img_update);
 
 // ---------------------------------------------
 
