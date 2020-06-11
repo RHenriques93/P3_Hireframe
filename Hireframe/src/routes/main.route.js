@@ -71,6 +71,7 @@ router.get('/subarea_servico/:id', servicoController.subarea_servico_detail);
 
 router.put('/preco_servico/:id', servicoController.preco_update);
 router.post('/preco_servico', servicoController.preco_create);
+router.delete('/preco_servico/:id', servicoController.preco_delete);
 
 
 router.put('/img_servico/:id', upload.single('imagem'), servicoController.servico_img_update);

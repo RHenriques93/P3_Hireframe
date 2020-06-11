@@ -162,7 +162,7 @@ controller.subarea_servico_detail = async (req, res) => {
           });
         };
 
-
+//preco_servico_update
         controller.preco_update = async (req, res) => {
 
           const {id} = req.params;
@@ -191,7 +191,7 @@ controller.subarea_servico_detail = async (req, res) => {
         };
 
 
-//servico_create
+//preco_servico_create
 controller.preco_create = async (req, res) => {
   const {id} = req.params;
     const { id_servico, base, padrao, premium}  = req.body;
@@ -218,6 +218,22 @@ controller.preco_create = async (req, res) => {
       });
     };
 
+
+//preco_servico_delete
+controller.preco_delete = async (req, res) => {
+
+  const { id } = req.params;
+  const dados = await servico.destroy({ where: { id_servico: id } }).catch((error) => {
+    res.status(500).send({
+      message: error.message || "Ocorreu um erro ao tentar remover o preço do serviço.",
+    });
+  });
+
+  res.status(204).json({
+    success: true,
+    dados: dados,
+  });
+};
 
 //servico_img_update
 controller.servico_img_update = async (req, res) => {
